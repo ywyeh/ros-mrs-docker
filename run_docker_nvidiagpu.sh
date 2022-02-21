@@ -17,20 +17,22 @@ if [ ! -f $XAUTH ]; then
     chmod a+r $XAUTH
 fi
 
-#Prevent executing "docker run" when xauth failed.
-if [ ! -f $XAUTH ]; then
-    echo "[$XAUTH] was not properly created. Exiting..."
-   exit 1
-fi
+# #Prevent executing "docker run" when xauth failed.
+# if [ ! -f $XAUTH ]; then
+#     echo "[$XAUTH] was not properly created. Exiting..."
+#    exit 1
+# fi
 
 docker run -it \
     -e DISPLAY=$DISPLAY \
     -e XAUTHORITY=$XAUTH \
+    -e QT_X11_NO_MITSHM=1 \
     -v "$XAUTH:$XAUTH" \
-    -v "/tmp/.X11-unix:/tmp/.X11-unix" \
+    -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
     -v "/etc/localtime:/etc/localtime:ro" \
     -v "/home/$USER/euro_ws:/root/euro_ws" \
     -v "/dev:/dev" \
+    --runtime=nvidia \
     --workdir "/root/euro_ws" \
     --user "root:root" \
     --name ros_noetic \
@@ -39,3 +41,5 @@ docker run -it \
     --privileged \
     ywyeh/ros-mrs \
     zsh 
+    
+# osrf/ros:noetic-desktop-full \

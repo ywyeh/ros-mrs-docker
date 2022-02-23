@@ -17,7 +17,7 @@ if [ ! -f $XAUTH ]; then
     chmod a+r $XAUTH
 fi
 
-# #Prevent executing "docker run" when xauth failed.
+#Prevent executing "docker run" when xauth failed.
 # if [ ! -f $XAUTH ]; then
 #     echo "[$XAUTH] was not properly created. Exiting..."
 #    exit 1
@@ -39,7 +39,7 @@ docker run -it \
     --network host \
     --rm \
     --privileged \
-    ywyeh/ros-mrs \
+    ywyeh/ros-mrs-jetson \
     zsh 
     
 # osrf/ros:noetic-desktop-full \

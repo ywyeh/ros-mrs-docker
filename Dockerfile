@@ -20,7 +20,8 @@ RUN chsh -s /bin/zsh
 
 RUN apt install -y \
     ros-noetic-robot-localization \
-    ros-noetic-map-server
+    ros-noetic-map-server \
+    ros-noetic-teleop-twist-keyboard
     
 RUN echo "source /opt/ros/noetic/setup.zsh" >> ~/.zshrc
 RUN echo "source /root/euro_ws/devel/setup.zsh" >> ~/.zshrc

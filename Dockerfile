@@ -25,8 +25,6 @@ RUN apt install -y \
     
 RUN echo "source /opt/ros/noetic/setup.zsh" >> ~/.zshrc
 RUN echo "source /root/euro_ws/devel/setup.zsh" >> ~/.zshrc
-RUN echo "export ROS_IP=$(hostname -I | awk '{print $1}')" >> ~/.zshrc
-RUN echo "export ROS_MASTER_URI=http://${ROS_IP}:11311" >> ~/.zshrc
 RUN echo "PS1=\"\[\033[1;32;1m\][\[\033[1;34;40m\]\u@\h:\[\033[0;36;40m\]\w\[\033[1;32;1m\]]\[\033[1;31;1m\]\$\[\033[1;36;1m\]\"" >> ~/.bashrc
 
 CMD ["/bin/zsh"]
